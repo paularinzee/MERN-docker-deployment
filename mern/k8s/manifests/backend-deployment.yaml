@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-api
+  labels:
+    app: mern-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mern-api
+  template:
+    metadata:
+      labels:
+        app: mern-api
+    spec:
+      containers:
+      - name: mern-api
+        image: paularinze/mern-api:latest # Replace with your image
+        ports:
+        - containerPort: 8080
+        

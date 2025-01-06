@@ -1,0 +1,11 @@
+apiAppName: mern-api
+apiImg:
+  name: paularinze/qr-api
+  tag: demo1
+
+
+
+frontName: mern-frontend
+frontImg:
+  name: paularinze/mern-frontend
+  tag: test
