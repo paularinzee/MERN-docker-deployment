@@ -6,6 +6,11 @@ metadata:
     app: {{ .Values.apiAppName }}
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
   selector:
     matchLabels:
       app: {{ .Values.apiAppName }}
@@ -19,4 +24,26 @@ spec:
         image: {{ .Values.apiAppName }}:{{ .Values.apiImg.tag }}
         ports:
         - containerPort: 8080
+    ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+        startupProbe:
+          httpGet:
+            path: /started
+            port: 8080
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          failureThreshold: 30
         

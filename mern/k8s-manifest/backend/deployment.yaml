@@ -5,7 +5,7 @@ metadata:
   labels:
     app: mern-api
 spec:
-  replicas: 
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
