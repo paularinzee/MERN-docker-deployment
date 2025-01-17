@@ -6,6 +6,11 @@ metadata:
     app: mern-frontend
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
   selector:
     matchLabels:
       app: mern-frontend
@@ -17,5 +22,8 @@ spec:
       containers:
       - name: mern-frontend
         image: paularinze/mern-frontend:latest # Replace with your image
+        env:
+          - name: REACT_APP_BACKEND_URL
+            value: "http://amanpathakdevops.study/api/tasks"
         ports:
         - containerPort: 3000

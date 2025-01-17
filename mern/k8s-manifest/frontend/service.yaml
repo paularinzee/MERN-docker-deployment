@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: mern-frontend-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: mern-frontend
   ports:
